@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="product_template_form_sp_fao_defaults" model="ir.ui.view">
+        <field name="name">product.template.form.sp.fao.defaults</field>
+        <field name="model">product.template</field>
+        <field name="inherit_id" ref="product.product_template_form_view"/>
+        <field name="arch" type="xml">
+            <xpath expr="//sheet//group" position="inside">
+                <group string="Tracciabilità FAO (Default)">
+                    <field name="sp_production_method_default"/>
+
+                    <field name="sp_fao_zone_id_default"
+                           invisible="sp_production_method_default != 'wild'"/>
+
+                    <field name="sp_fishing_gear_id_default"
+                           invisible="sp_production_method_default != 'wild'"/>
+
+                    <field name="sp_production_country_id_default"
+                           invisible="sp_production_method_default != 'farmed'"/>
+                </group>
+            </xpath>
+        </field>
+    </record>
+</odoo>

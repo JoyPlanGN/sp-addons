@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="view_production_lot_form_sp_lot_fao" model="ir.ui.view">
+        <field name="name">stock.lot.form.sp.lot.fao</field>
+        <field name="model">stock.lot</field>
+        <field name="inherit_id" ref="stock.view_production_lot_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//sheet//group" position="inside">
+                <group string="Tracciabilità Ittico (Salerno Pesca)">
+                    <field name="sp_supplier_lot"/>
+
+                    <field name="sp_production_method"/>
+
+                    <field name="sp_fao_zone_id"
+                           invisible="sp_production_method != 'wild'"
+                           required="sp_production_method == 'wild'"/>
+
+                    <field name="sp_fishing_gear_id"
+                           invisible="sp_production_method != 'wild'"
+                           required="sp_production_method == 'wild'"/>
+
+                    <field name="sp_production_country_id"
+                           invisible="sp_production_method != 'farmed'"
+                           required="sp_production_method == 'farmed'"/>
+                </group>
+            </xpath>
+        </field>
+    </record>
+</odoo>

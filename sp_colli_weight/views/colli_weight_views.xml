@@ -1,0 +1,38 @@
+<odoo>
+
+    <!-- ========================= -->
+    <!-- SALE: colonna Colli nella TABELLINA righe (list del widget sol_o2m) -->
+    <!-- ========================= -->
+<!-- ========================= -->
+    <!-- SALE: Totali Colli + Peso vicino ai totali economici -->
+    <!-- ========================= -->
+    <record id="sp_sale_order_form_totals" model="ir.ui.view">
+        <field name="name">sale.order.form.sp.totals</field>
+        <field name="model">sale.order</field>
+        <field name="inherit_id" ref="sale.view_order_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//group[@name='sale_total']" position="inside">
+                <field name="sp_colli_total" readonly="1"/>
+                <field name="sp_weight_total_kg" readonly="1"/>
+            </xpath>
+        </field>
+    </record>
+
+
+    <record id="sp_sale_order_form_colli_weight" model="ir.ui.view">
+        <field name="name">sale.order.form.sp.colli.weight</field>
+        <field name="model">sale.order</field>
+        <field name="inherit_id" ref="sale.view_order_form"/>
+        <field name="arch" type="xml">
+
+            <!-- Colonne in riga (TAB) -->
+            <xpath expr="//page[@name='order_lines']//field[@name='order_line']//list//field[@name='product_uom_qty']" position="after">
+                <field name="sp_colli_qty" optional="show"/>
+                <field name="sp_weight_line_kg" optional="show"/>
+                <field name="sp_weight_manual" optional="hide"/>
+            </xpath>
+
+        </field>
+    </record>
+
+</odoo>

@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <record id="sp_purchase_order_form_inherit_colli_weight" model="ir.ui.view">
+        <field name="name">purchase.order.form.inherit.sp.colli.weight</field>
+        <field name="model">purchase.order</field>
+        <field name="inherit_id" ref="purchase.purchase_order_form"/>
+        <field name="arch" type="xml">
+
+            <!-- Colonne su righe (LIST): dopo quantità -->
+            <xpath expr="//page[@name='products']//field[@name='order_line']//list//field[@name='product_qty']" position="after">
+                <field name="sp_colli_qty" optional="show"/>
+                <field name="sp_weight_line_kg" optional="show"/>
+                <field name="sp_weight_manual" optional="hide"/>
+            </xpath>
+
+            <!-- Totali documento: nel footer accanto ai totali (tax_totals) -->
+            <xpath expr="//page[@name='products']//group[hasclass('oe_subtotal_footer')]//field[@name='tax_totals']" position="after">
+                <div class="mt-2">
+                    <field name="sp_colli_total" readonly="1"/>
+                    <field name="sp_weight_total_kg" readonly="1"/>
+                </div>
+            </xpath>
+
+        </field>
+    </record>
+
+</odoo>
